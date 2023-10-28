@@ -1,0 +1,70 @@
+/* src/pages/styles/Register.scss */
+
+.register-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  text-align: center;
+
+  .tabs {
+    display: flex;
+    margin-bottom: 20px;
+    .tab {
+      flex: 1;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      &.active {
+        background-color: #007BFF;
+        color: white;
+      }
+      &:not(.active) {
+        color: #333; 
+        &:hover {
+          background-color: #ddd; 
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+  }
+
+  button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    width: 100%;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
