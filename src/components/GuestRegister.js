@@ -52,37 +52,37 @@ function GuestRegister() {
   };
 
   return (
-    <div className="guest-registration">
-      <h2>Ziyaretçi Kaydı</h2>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Kullanıcı Adı"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-        <input
-          type="email"
-          placeholder="E-Posta"
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <input
-          type="password"
-          placeholder="Şifre"
-          value={companyPassword}
-          onChange={handleCompanyPasswordChange}
-        />
-        <input
-          type="password"
-          placeholder="Şifre Tekrar"
-          value={companyConfirmPassword}
-          onChange={handleCompanyConfirmPasswordChange}
-        />
+      <div className="guest-registration">
+        <h2>Ziyaretçi Kaydı</h2>
+        <div className="input-container">
+          <input
+              type="text"
+              placeholder="Kullanıcı Adı"
+              value={username}
+              onChange={handleUsernameChange}
+          />
+          <input
+              type="email"
+              placeholder="E-Posta"
+              value={email}
+              onChange={handleEmailChange}
+          />
+          <input
+              type="password"
+              placeholder="Şifre"
+              value={companyPassword}
+              onChange={handleCompanyPasswordChange}
+          />
+          <input
+              type="password"
+              placeholder="Şifre Tekrar"
+              value={companyConfirmPassword}
+              onChange={handleCompanyConfirmPasswordChange}
+          />
+        </div>
+        <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
+        {error && <p>{error}</p>}
       </div>
-      <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
-      {error && <p>{error}</p>}
-    </div>
   );
 }
 

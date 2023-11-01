@@ -55,10 +55,11 @@ function CompanyRegister() {
         address: companyAddress,
         phone: companyPhoneNumber,
         password: companyPassword,
+        role: 'COMPANY', // Şirket rolünü ekledik
       };
 
       try {
-        const response = await fetch('http://localhost:9091/api/v1/company/register', {
+        const response = await fetch('http://localhost:9090/api/v1/auth/register', { // URL'i güncelledik
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -76,62 +77,61 @@ function CompanyRegister() {
     }
   };
 
-
   return (
-    <div className="company-registration">
-      <h2>Şirket Yöneticisi Kaydı</h2>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Kullanıcı Adı"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-        <input
-          type="text"
-          placeholder="Şirket Adı"
-          value={companyName}
-          onChange={handleCompanyNameChange}
-        />
-        <input
-          type="text"
-          placeholder="Vergi Numarası"
-          value={taxNumber}
-          onChange={handleTaxNumberChange}
-        />
-        <input
-          type="email"
-          placeholder="Şirket E-posta"
-          value={companyEmail}
-          onChange={handleCompanyEmailChange}
-        />
-        <input
-          type="text"
-          placeholder="Şirket Adresi"
-          value={companyAddress}
-          onChange={handleCompanyAddressChange}
-        />
-        <input
-          type="text"
-          placeholder="Şirket Telefonu"
-          value={companyPhoneNumber}
-          onChange={handleCompanyPhoneNumberChange}
-        />
-        <input
-          type="password"
-          placeholder="Şifre"
-          value={companyPassword}
-          onChange={handleCompanyPasswordChange}
-        />
-        <input
-          type="password"
-          placeholder="Şifre Tekrar"
-          value={companyConfirmPassword}
-          onChange={handleCompanyConfirmPasswordChange}
-        />
+      <div className="company-registration">
+        <h2>Şirket Yöneticisi Kaydı</h2>
+        <div className="input-container">
+          <input
+              type="text"
+              placeholder="Kullanıcı Adı"
+              value={username}
+              onChange={handleUsernameChange}
+          />
+          <input
+              type="text"
+              placeholder="Şirket Adı"
+              value={companyName}
+              onChange={handleCompanyNameChange}
+          />
+          <input
+              type="text"
+              placeholder="Vergi Numarası"
+              value={taxNumber}
+              onChange={handleTaxNumberChange}
+          />
+          <input
+              type="email"
+              placeholder="Şirket E-posta"
+              value={companyEmail}
+              onChange={handleCompanyEmailChange}
+          />
+          <input
+              type="text"
+              placeholder="Şirket Adresi"
+              value={companyAddress}
+              onChange={handleCompanyAddressChange}
+          />
+          <input
+              type="text"
+              placeholder="Şirket Telefonu"
+              value={companyPhoneNumber}
+              onChange={handleCompanyPhoneNumberChange}
+          />
+          <input
+              type="password"
+              placeholder="Şifre"
+              value={companyPassword}
+              onChange={handleCompanyPasswordChange}
+          />
+          <input
+              type="password"
+              placeholder="Şifre Tekrar"
+              value={companyConfirmPassword}
+              onChange={handleCompanyConfirmPasswordChange}
+          />
+        </div>
+        <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
       </div>
-      <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
-    </div>
   );
 }
 

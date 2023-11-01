@@ -17,38 +17,55 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  const parseJwt = (token) => {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      return null;
+    }
+  };
+
   const handleLogin = async () => {
     try {
       const loginData = { username, password };
-      const response = await fetch('http://localhost:9090/login', {
+      const response = await fetch('http://localhost:9090/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(loginData),
       });
-  
+
       if (response.ok) {
-        const tokenData = await response.json();
-  
-        // JWT token içindeki "myId" ve "role" bilgilerini alın
-        const myId = tokenData.myId;
-        const userRole = tokenData.role;
-  
-        // Kullanıcı rolüne ve ID'ye göre yönlendirme yapın
-        switch (userRole) {
-          case 'ADMIN':
-            navigate('/admin-panel');
-            break;
-          case 'COMPANY':
-            navigate('/company-panel');
-            break;
-          case 'GUEST':
-            navigate('/guest-panel');
-            break;
-          default:
-            setError('Geçersiz kullanıcı rolü.');
-            break;
+        const tokenData = await response.text();
+
+        const decodedToken = parseJwt(tokenData);
+
+        if (decodedToken) {
+          const userRole = decodedToken.role;
+
+          switch (userRole) {
+            case 'ADMIN':
+              navigate('/admin-panel');
+              break;
+            case 'COMPANY':
+              navigate('/company-panel');
+              break;
+            case 'GUEST':
+              navigate('/guest-panel');
+              break;
+            default:
+              setError('Geçersiz kullanıcı rolü.');
+              break;
+          }
+        } else {
+          setError('JWT token çözülemedi veya kullanıcı rolü bulunamadı.');
         }
       } else {
         setError('Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyiniz.');
@@ -58,28 +75,27 @@ function Login() {
       setError('Giriş sırasında bir hata oluştu. Lütfen tekrar deneyiniz.');
     }
   };
-  
 
   return (
-    <div className="login-container">
-      <h2>Kullanıcı Girişi</h2>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Kullanıcı Adı"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-        <input
-          type="password"
-          placeholder="Şifre"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <button onClick={handleLogin}>Giriş Yap</button>
-        {error && <p className="error-message">{error}</p>}
+      <div className="login-container">
+        <h2>Kullanıcı Girişi</h2>
+        <div className="input-container">
+          <input
+              type="text"
+              placeholder="Kullanıcı Adı"
+              value={username}
+              onChange={handleUsernameChange}
+          />
+          <input
+              type="password"
+              placeholder="Şifre"
+              value={password}
+              onChange={handlePasswordChange}
+          />
+          <button onClick={handleLogin}>Giriş Yap</button>
+          {error && <p className="error-message">{error}</p>}
+        </div>
       </div>
-    </div>
   );
 }
 
