@@ -70,6 +70,11 @@
       "username": "ali",
       "email": "ali@veli.com",
       "password": "123"
+    },
+    {
+      "username": "ahmet",
+      "email": "ahmett@gagfas",
+      "password": "123"
     }
   ],
   "login": [
@@ -111,6 +116,10 @@
     },
     {
       "username": "veli",
+      "password": "123"
+    },
+    {
+      "username": "ahmet",
       "password": "123"
     }
   ]

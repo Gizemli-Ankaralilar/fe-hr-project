@@ -58,7 +58,7 @@ function CompanyRegister() {
       };
 
       try {
-        const response = await fetch('http://localhost:9090/register-company', {
+        const response = await fetch('http://localhost:9091/api/v1/company/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

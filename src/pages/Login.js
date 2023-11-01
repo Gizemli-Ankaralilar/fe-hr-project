@@ -27,17 +27,28 @@ function Login() {
         },
         body: JSON.stringify(loginData),
       });
-
+  
       if (response.ok) {
-        const userData = await response.json();
-
-        // Burada kullanıcıyı ve rolünü kontrol edebilirsiniz
-        if (userData.username === 'admin') {
-          navigate('/admin-panel');
-        } else if (userData.username.startsWith('company')) {
-          navigate('/company-panel');
-        } else if (userData.username.startsWith('user')) {
-          navigate('/guest-panel');
+        const tokenData = await response.json();
+  
+        // JWT token içindeki "myId" ve "role" bilgilerini alın
+        const myId = tokenData.myId;
+        const userRole = tokenData.role;
+  
+        // Kullanıcı rolüne ve ID'ye göre yönlendirme yapın
+        switch (userRole) {
+          case 'ADMIN':
+            navigate('/admin-panel');
+            break;
+          case 'COMPANY':
+            navigate('/company-panel');
+            break;
+          case 'GUEST':
+            navigate('/guest-panel');
+            break;
+          default:
+            setError('Geçersiz kullanıcı rolü.');
+            break;
         }
       } else {
         setError('Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyiniz.');
@@ -47,6 +58,7 @@ function Login() {
       setError('Giriş sırasında bir hata oluştu. Lütfen tekrar deneyiniz.');
     }
   };
+  
 
   return (
     <div className="login-container">
