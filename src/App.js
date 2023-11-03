@@ -9,29 +9,28 @@ import Register from './pages/Register';
 import GuestPanel from './pages/GuestPanel';
 import CompanyPanel from './pages/CompanyPanel';
 import AdminPanel from './pages/AdminPanel';
-import EmployeePanel from './pages/EmployeePanel';
+import UserPanel from './pages/UserPanel';
 import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <header className="header">
-          <Navbar />
-        </header>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/guest-panel" element={<GuestPanel />} />
-          <Route path="/company-panel" element={<CompanyPanel />} />
-          <Route path="/admin-panel" element={<AdminPanel />} /> 
-          <Route path="/personel-panel" element={<EmployeePanel />} />
-        </Routes>
-      </div>
-    </Router>
+      <Router>
+        <div className="app">
+          <header className="header">
+            <Navbar />
+          </header>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/guest-panel" element={<GuestPanel />} />
+            <Route path="/company-panel" element={<CompanyPanel />} />
+            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/user-panel" element={<UserPanel />} />
+          </Routes>
+        </div>
+      </Router>
   );
 }
 
 export default App;
-
