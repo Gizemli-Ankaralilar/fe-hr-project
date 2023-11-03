@@ -49,7 +49,12 @@ function Login() {
 
         if (decodedToken) {
           const userRole = decodedToken.role;
+          console.log(userRole);
+          const userId = decodedToken.userId;
+          console.log('userId:', userId);
 
+
+          // Kullanıcı rolüne göre yönlendirme
           switch (userRole) {
             case 'ADMIN':
               navigate('/admin-panel');
@@ -58,7 +63,7 @@ function Login() {
               navigate('/company-panel');
               break;
             case 'GUEST':
-              navigate('/guest-panel');
+              navigate(`/guest-panel/${userId}`);
               break;
             default:
               setError('Geçersiz kullanıcı rolü.');
@@ -67,8 +72,15 @@ function Login() {
         } else {
           setError('JWT token çözülemedi veya kullanıcı rolü bulunamadı.');
         }
+      } else if (response.status === 400) {
+        const errorData = await response.json();
+        if (errorData.message) {
+          setError(errorData.message);
+        } else {
+          setError('Bilinmeyen bir hata oluştu.');
+        }
       } else {
-        setError('Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyiniz.');
+        setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
       }
     } catch (error) {
       console.error('Giriş hatası:', error);

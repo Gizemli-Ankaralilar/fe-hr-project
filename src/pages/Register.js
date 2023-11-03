@@ -22,8 +22,15 @@ function Register() {
         } else if (data.type === 'company') {
           alert('Şirket kaydı başarıyla tamamlandı.');
         }
+      } else if (response.status === 400) {
+        const errorData = await response.json();
+        if (errorData.message) {
+          setError(errorData.message);
+        } else {
+          setError('Bilinmeyen bir hata oluştu.');
+        }
       } else {
-        setError('Bir hata oluştu. Lütfen tekrar deneyin.');
+        setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
       }
     } catch (error) {
       console.error('Kayıt hatası:', error);
