@@ -1,12 +1,27 @@
-/* UserInformation.js */
+// UserInformation.js
+import React, { useState, useEffect } from 'react';
 
-import React from 'react';
+function UserInformation({ userId }) {
+    const [userInfo, setUserInfo] = useState({});
 
-function UserInformation({ userInfo }) {
+
+
+    useEffect(() => {
+        // Sunucudan kullanıcı bilgilerini almak için bir fetch isteği yapın
+        fetch(`http://localhost:9094/api/v1/user/${userId}/information`)
+            .then((response) => response.json())
+            .then((data) => {
+                setUserInfo(data);
+            })
+            .catch((error) => {
+                console.error('Kullanıcı bilgi alma hatası:', error);
+            });
+    }, [userId]);
+
     return (
         <div>
             <h3>Kullanıcı Bilgileri</h3>
-            <p>Kullanıcı Name: {userInfo.username}</p>
+            <p>Kullanıcı Adı: {userInfo.username}</p>
             <fieldset>
                 <legend>Kullanıcı Bilgileri</legend>
                 <form>
@@ -67,4 +82,5 @@ function UserInformation({ userInfo }) {
         </div>
     );
 }
+
 export default UserInformation;
