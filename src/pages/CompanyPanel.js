@@ -4,6 +4,7 @@ import React from 'react';
 import './styles/Panel.scss';
 
 function CompanyPanel() {
+
     return (
         <div className="panel">
             <div className="menu">
@@ -14,6 +15,7 @@ function CompanyPanel() {
                     <li>Ayarlar</li>
                 </ul>
             </div>
+
 
             {/* Sağ taraftaki içerik alanı */}
             <div className="content">
