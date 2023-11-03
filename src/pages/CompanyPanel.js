@@ -1,14 +1,14 @@
 /* src/pages/CompanyPanel.js */
 
 import React from 'react';
-import './styles/Panel.scss'; 
+import './styles/Panel.scss';
 
 function CompanyPanel() {
   return (
     <div className="panel">
       <div className="menu">
         <ul>
-          <li>Şirket Yönetim Paneli</li> 
+          <li>Şirket Yönetim Paneli</li>
           <li>Şirket Bilgileri</li>
           <li>Muhasebe Bilgileri</li>
           <li>Ayarlar</li>
