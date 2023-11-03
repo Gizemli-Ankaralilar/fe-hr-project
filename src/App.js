@@ -8,7 +8,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import GuestPanel from './pages/GuestPanel';
 import CompanyPanel from './pages/CompanyPanel';
-import AdminPanel from './pages/AdminPanel'; 
+import AdminPanel from './pages/AdminPanel';
+import EmployeePanel from './pages/EmployeePanel';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/guest-panel" element={<GuestPanel />} />
           <Route path="/company-panel" element={<CompanyPanel />} />
           <Route path="/admin-panel" element={<AdminPanel />} /> 
+          <Route path="/personel-panel" element={<EmployeePanel />} />
         </Routes>
       </div>
     </Router>
