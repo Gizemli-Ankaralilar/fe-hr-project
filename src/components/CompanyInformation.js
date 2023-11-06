@@ -1,20 +1,31 @@
-/* UserInformation.js */
+import React, { useState, useEffect } from 'react';
 
-import React from 'react';
+function CompanyInformation({ userId }) {
+    const [userInfo, setUserInfo] = useState({});
 
-function CompanyInformation({ companyInfo }) {
+    useEffect(() => {
+        // Fetch user information from the server
+        fetch(`http://localhost:9094/api/v1/user/${userId}/information`)
+            .then((response) => response.json())
+            .then((data) => {
+                setUserInfo(data);
+            })
+            .catch((error) => {
+                console.error('Kullanıcı bilgi alma hatası:', error);
+            });
+    }, [userId]);
+
     return (
         <div>
-            <h3>Company Informations</h3>
-            <p>Company Name: {companyInfo.username}</p>
-            {/* Diğer şirket bilgilerini buraya ekleyin */}
+            <h3 style={{ textAlign: "center" }}>Şirket Bilgileri</h3>
+            <p>Giriş Yapan Personel Adı: {userInfo.username}</p>
             <fieldset>
-                <legend>Company Informations</legend>
+                <legend>Şirket Bilgileri</legend>
                 <form>
                     <image>
                         <label htmlFor="nameId1">Company Logo: </label>
                         <br />
-                        <input id="nameId0" type="image" name="image"/>
+                        <input id="nameId0" type="text" name="image"/>
                     </image>
                     <br />
                     <label htmlFor="nameId1">Company Name: </label>
