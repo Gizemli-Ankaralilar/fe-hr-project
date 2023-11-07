@@ -3,22 +3,15 @@ import './styles/Panel.scss';
 import UserInformation from '../components/UserInformation';
 import Settings from '../components/Settings';
 import CompanyInformation from '../components/CompanyInformation';
-import Yorum from '../components/Yorum'; // Yorum bileşenini içe aktarın
+import Yorum from '../components/Yorum';
+import { useParams } from 'react-router-dom'; // useParams hook'unu içe aktarın
 
 function UserPanel() {
+    const { userId } = useParams(); // useParams hook'u ile userId'i alın
+
     const [userInfo, setUserInfo] = useState({});
     const [companyInfo, setCompanyInfo] = useState({});
-    const [userId, setUserId] = useState(null);
     const [activeMenu, setActiveMenu] = useState('welcome');
-
-    useEffect(() => {
-        const pathParts = window.location.pathname.split('/');
-        const urlUserId = pathParts[pathParts.length - 1];
-
-        if (urlUserId && urlUserId !== 'undefined') {
-            setUserId(urlUserId);
-        }
-    }, []);
 
     useEffect(() => {
         if (userId && activeMenu === 'user-info') {
@@ -55,7 +48,7 @@ function UserPanel() {
                     </li>
                     <li onClick={() => setActiveMenu('user-info')}>Personel Bilgileri</li>
                     <li onClick={() => setActiveMenu('company-info')}>Şirket Bilgileri</li>
-                    <li onClick={() => setActiveMenu('yorum')}>Yorum</li> {/* Yorum seçeneğini ekleyin */}
+                    <li onClick={() => setActiveMenu('yorum')}>Yorum</li>
                     <li onClick={() => setActiveMenu('settings')}>Ayarlar</li>
                 </ul>
             </div>
@@ -69,7 +62,7 @@ function UserPanel() {
                 {activeMenu === 'user-info' && userId && <UserInformation userId={userId} />}
                 {activeMenu === 'settings' && userId && <Settings userId={userId} />}
                 {activeMenu === 'company-info' && userId && <CompanyInformation companyId={userId} />}
-                {activeMenu === 'yorum' && userId && <Yorum userId={userId} />} {/* Yorum bileşenini ekleyin */}
+                {activeMenu === 'yorum' && userId && <Yorum userId={userId} />}
             </div>
         </div>
     );

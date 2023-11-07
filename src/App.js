@@ -1,5 +1,3 @@
-// src/App.js
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.scss';
@@ -26,7 +24,7 @@ function App() {
             <Route path="/guest-panel" element={<GuestPanel />} />
             <Route path="/company-panel" element={<CompanyPanel />} />
             <Route path="/admin-panel" element={<AdminPanel />} />
-            <Route path="/user-panel" element={<UserPanel />} />
+            <Route path="/user-panel/:userId" element={<UserPanel />} />
           </Routes>
         </div>
       </Router>
