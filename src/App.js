@@ -23,7 +23,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/guest-panel" element={<GuestPanel />} />
             <Route path="/company-panel" element={<CompanyPanel />} />
-            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/admin-panel/:userId" element={<AdminPanel />} />
             <Route path="/user-panel/:userId" element={<UserPanel />} />
           </Routes>
         </div>
