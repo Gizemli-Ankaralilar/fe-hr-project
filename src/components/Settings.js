@@ -20,7 +20,6 @@ function Settings({ userId }) {
 
     return (
         <div>
-            <h3 style={{ textAlign: "center" }}>Ayarlar</h3>
             <p>Giriş Yapan Kullanıcı Adı: {userInfo.username}</p>
             <fieldset>
                 <legend>Kullanıcı Ayarları</legend>

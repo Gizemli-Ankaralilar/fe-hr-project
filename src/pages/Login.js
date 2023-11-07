@@ -57,7 +57,7 @@ function Login() {
           // Kullanıcı rolüne göre yönlendirme
           switch (userRole) {
             case 'ADMIN':
-              navigate('/admin-panel');
+              navigate('/admin-panel/${userId}');
               break;
             case 'COMPANY':
               navigate('/company-panel');

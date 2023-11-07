@@ -17,17 +17,11 @@ function YorumOnaylari({ userId }) {
 
     return (
         <div>
-            <h3 style={{ textAlign: "center" }}>Yorum Ekranı</h3>
+            <h3 style={{ textAlign: "center" }}>Yorum Onayı</h3>
             <p>Giriş Yapan Personel Adı: {userInfo.username}</p>
             <fieldset>
                 <legend>Yorum Ekranı</legend>
                 <form>
-                    <image>
-                        <label htmlFor="nameId1">Şirket Logosu: </label>
-                        <br />
-                        <input id="nameId1" type="image" name="image" placeholder="Enter Your Username..."/>
-                    </image>
-                    <br />
                     <label htmlFor="nameId1">Şirket Adı: </label>
                     <input id="nameId1" type="text" name="name1"/>
                     <br />
