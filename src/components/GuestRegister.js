@@ -42,7 +42,7 @@ function GuestRegister() {
           body: JSON.stringify(newUserData),
         });
         if (response.ok) {
-          setError('Ziyaretçi kaydı başarıyla tamamlandı.');
+          setError('Onay Link Mailinize Gönderildi.');
         }
       } catch (error) {
         console.error('Kayıt hatası:', error);

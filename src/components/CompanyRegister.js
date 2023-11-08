@@ -44,7 +44,13 @@ function CompanyRegister() {
   };
 
   const handleRegister = async () => {
-    if (companyPassword !== companyConfirmPassword) {
+    if (companyName.trim() === '') {
+      setError('Şirket adı boş olamaz. Lütfen doldurun.');
+    } else if (taxNumber.trim() === '') {
+      setError('Vergi numarası boş olamaz. Lütfen doldurun.');
+    } else if (companyEmail.trim() === '') {
+      setError('Şirket e-posta boş olamaz. Lütfen doldurun.');
+    } else if (companyPassword !== companyConfirmPassword) {
       setError('Şifreler uyuşmuyor. Lütfen tekrar deneyiniz.');
     } else {
       const newCompanyData = {
@@ -55,11 +61,10 @@ function CompanyRegister() {
         address: companyAddress,
         phone: companyPhoneNumber,
         password: companyPassword,
-        role: 'COMPANY', // Şirket rolünü ekledik
       };
 
       try {
-        const response = await fetch('http://localhost:9090/api/v1/auth/register', { // URL'i güncelledik
+        const response = await fetch('http://localhost:9090/api/v1/auth/company-register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -131,6 +136,7 @@ function CompanyRegister() {
           />
         </div>
         <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
+        {error && <p>{error}</p>}
       </div>
   );
 }
