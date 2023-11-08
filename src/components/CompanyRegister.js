@@ -73,7 +73,7 @@ function CompanyRegister() {
         });
 
         if (response.ok) {
-          setError('Şirket kaydı başarıyla tamamlandı.');
+          setError('Yapılacak İncelemelerden Sonra Kaydınız Tamamlanacaktır.');
         }
       } catch (error) {
         console.error('Kayıt hatası:', error);
