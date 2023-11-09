@@ -59,14 +59,14 @@ function Login() {
             case 'ADMIN':
               navigate('/admin-panel/${userId}');
               break;
-            case 'COMPANY':
+            case 'COMPANY_OWNER':
               navigate('/company-panel');
               break;
             case 'USER':
               navigate(`/user-panel/${userId}`);
               break;
             case 'GUEST':
-              navigate(`/guest-panel/${userId}`);
+              navigate(`/`);
               break;
             default:
               setError('Geçersiz kullanıcı rolü.');
