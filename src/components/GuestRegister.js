@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 function GuestRegister() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [companyPassword, setCompanyPassword] = useState('');
-  const [companyConfirmPassword, setCompanyConfirmPassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
@@ -15,22 +15,28 @@ function GuestRegister() {
     setEmail(e.target.value);
   };
 
-  const handleCompanyPasswordChange = (e) => {
-    setCompanyPassword(e.target.value);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
-  const handleCompanyConfirmPasswordChange = (e) => {
-    setCompanyConfirmPassword(e.target.value);
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const handleRegister = async () => {
-    if (companyPassword !== companyConfirmPassword) {
+    if (username.trim() === '') {
+      setError('Kullanıcı adı boş olamaz. Lütfen doldurun.');
+    } else if (email.trim() === '') {
+      setError('E-Posta boş olamaz. Lütfen doldurun.');
+    } else if (password.trim() === '') {
+      setError('Şifre girmediniz. Lütfen bir şifre belirleyin.');
+    } else if (password !== confirmPassword) {
       setError('Şifreler uyuşmuyor. Lütfen tekrar deneyiniz.');
     } else {
       const newUserData = {
         username,
         email,
-        password: companyPassword,
+        password: password,
       };
 
       try {
@@ -43,7 +49,18 @@ function GuestRegister() {
         });
         if (response.ok) {
           setError('Onay Link Mailinize Gönderildi.');
+        } else if (response.status === 400) {
+        const errorData = await response.json();
+        if (errorData.message) {
+          setError(errorData.message);
+        } else {
+          setError('Bilinmeyen bir hata oluştu.');
         }
+      } else {
+        setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
+      }
+
+
       } catch (error) {
         console.error('Kayıt hatası:', error);
         setError('Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyiniz.');
@@ -70,14 +87,14 @@ function GuestRegister() {
           <input
               type="password"
               placeholder="Şifre"
-              value={companyPassword}
-              onChange={handleCompanyPasswordChange}
+              value={password}
+              onChange={handlePasswordChange}
           />
           <input
               type="password"
               placeholder="Şifre Tekrar"
-              value={companyConfirmPassword}
-              onChange={handleCompanyConfirmPasswordChange}
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
           />
         </div>
         <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>

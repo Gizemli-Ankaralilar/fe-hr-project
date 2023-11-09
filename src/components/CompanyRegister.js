@@ -4,11 +4,11 @@ function CompanyRegister() {
   const [username, setUsername] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [taxNumber, setTaxNumber] = useState('');
-  const [companyEmail, setCompanyEmail] = useState('');
-  const [companyAddress, setCompanyAddress] = useState('');
-  const [companyPhoneNumber, setCompanyPhoneNumber] = useState('');
-  const [companyPassword, setCompanyPassword] = useState('');
-  const [companyConfirmPassword, setCompanyConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
@@ -23,44 +23,48 @@ function CompanyRegister() {
     setTaxNumber(e.target.value);
   };
 
-  const handleCompanyEmailChange = (e) => {
-    setCompanyEmail(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handleCompanyAddressChange = (e) => {
-    setCompanyAddress(e.target.value);
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
   };
 
-  const handleCompanyPhoneNumberChange = (e) => {
-    setCompanyPhoneNumber(e.target.value);
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
   };
 
-  const handleCompanyPasswordChange = (e) => {
-    setCompanyPassword(e.target.value);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
-  const handleCompanyConfirmPasswordChange = (e) => {
-    setCompanyConfirmPassword(e.target.value);
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const handleRegister = async () => {
-    if (companyName.trim() === '') {
+    if (username.trim() === '') {
+      setError('Kullanıcı adı boş olamaz. Lütfen doldurun.');
+    } else if (companyName.trim() === '') {
       setError('Şirket adı boş olamaz. Lütfen doldurun.');
     } else if (taxNumber.trim() === '') {
       setError('Vergi numarası boş olamaz. Lütfen doldurun.');
-    } else if (companyEmail.trim() === '') {
+    } else if (email.trim() === '') {
       setError('Şirket e-posta boş olamaz. Lütfen doldurun.');
-    } else if (companyPassword !== companyConfirmPassword) {
+    } else if (password.trim() === '') {
+      setError('Şifre girmediniz. Lütfen bir şifre belirleyin.');
+    } else if (password !== confirmPassword) {
       setError('Şifreler uyuşmuyor. Lütfen tekrar deneyiniz.');
     } else {
       const newCompanyData = {
         username,
         companyName,
         taxNumber,
-        email: companyEmail,
-        address: companyAddress,
-        phone: companyPhoneNumber,
-        password: companyPassword,
+        email: email,
+        address: address,
+        phone: phoneNumber,
+        password: password,
       };
 
       try {
@@ -71,9 +75,18 @@ function CompanyRegister() {
           },
           body: JSON.stringify(newCompanyData),
         });
-
         if (response.ok) {
-          setError('Yapılacak İncelemelerden Sonra Kaydınız Tamamlanacaktır.');
+          setError('Ön kaydınız oluşturuldu.');
+          setError('Admin onayı bekleniyor.');
+        } else if (response.status === 400) {
+          const errorData = await response.json();
+          if (errorData.message) {
+            setError(errorData.message);
+          } else {
+            setError('Bilinmeyen bir hata oluştu.');
+          }
+        } else {
+          setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
         }
       } catch (error) {
         console.error('Kayıt hatası:', error);
@@ -81,6 +94,7 @@ function CompanyRegister() {
       }
     }
   };
+
 
   return (
       <div className="company-registration">
@@ -107,32 +121,32 @@ function CompanyRegister() {
           <input
               type="email"
               placeholder="Şirket E-posta"
-              value={companyEmail}
-              onChange={handleCompanyEmailChange}
+              value={email}
+              onChange={handleEmailChange}
           />
           <input
               type="text"
               placeholder="Şirket Adresi"
-              value={companyAddress}
-              onChange={handleCompanyAddressChange}
+              value={address}
+              onChange={handleAddressChange}
           />
           <input
               type="text"
               placeholder="Şirket Telefonu"
-              value={companyPhoneNumber}
-              onChange={handleCompanyPhoneNumberChange}
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
           />
           <input
               type="password"
               placeholder="Şifre"
-              value={companyPassword}
-              onChange={handleCompanyPasswordChange}
+              value={password}
+              onChange={handlePasswordChange}
           />
           <input
               type="password"
               placeholder="Şifre Tekrar"
-              value={companyConfirmPassword}
-              onChange={handleCompanyConfirmPasswordChange}
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
           />
         </div>
         <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
