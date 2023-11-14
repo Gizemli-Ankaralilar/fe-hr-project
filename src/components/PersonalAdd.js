@@ -1,6 +1,6 @@
 // PersonalAdd.js
 import React, { useState, useEffect } from 'react';
-import saveWorker from '../services/companyService'; // Dizin yapısına ve dosya adına göre güncellenmeli
+import { saveWorker } from '../services/api'; // Dizin yapısına ve dosya adına göre güncellenmeli
 import './styles/PersonalAdd.scss';
 
 function PersonelAdd({ companyId }) {
