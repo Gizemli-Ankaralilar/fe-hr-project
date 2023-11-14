@@ -26,7 +26,7 @@ export const updateUserProfile = (userId, updatedData) => {
 //PersonalAdd.js dosyasi icin
 
 export const companyApi = axios.create({
-    companyBaseURL: 'http://localhost:9091/api/v1/company',
+    baseURL: 'http://localhost:9091/api/v1/company',
 });
 
 export const saveWorker = (token, workerData) => {
