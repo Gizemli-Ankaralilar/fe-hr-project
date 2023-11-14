@@ -23,6 +23,22 @@ export const updateUserProfile = (userId, updatedData) => {
   return api.put(`/users/${userId}`, updatedData);
 };
 
+//PersonalAdd.js dosyasi icin
+
+export const companyApi = axios.create({
+    companyBaseURL: 'http://localhost:9091/api/v1/company',
+});
+
+export const saveWorker = (token, workerData) => {
+    return companyApi.post('/save/worker?token=' + token , {...workerData });
+};
+
+/*
+/save/worker/' + token , Path Variable
+ */
+
 // Diğer API isteklerini burada tanımlayabilirsiniz.
 
 export default api;
+
+
