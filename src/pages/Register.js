@@ -30,7 +30,11 @@ function Register() {
           setError('Bilinmeyen bir hata oluştu.');
         }
       } else {
-        setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
+        setError('Çok Enteresan bir hata oldu. ' +
+            'Acayip Bir Hata. Çok Üst Düzey Bir Hata. ' +
+            'Bu Hata Bizi Aşar. ' +
+            'Bu Hata Bizi Bitirir. ' +
+            'Ne yaptın sen böyle?');
       }
     } catch (error) {
       console.error('Kayıt hatası:', error);

@@ -45,6 +45,9 @@ function Login() {
       if (response.ok) {
         const tokenData = await response.text();
 
+        // localStorage'e token'ı kaydet
+        localStorage.setItem('token', tokenData);
+
         const decodedToken = parseJwt(tokenData);
 
         if (decodedToken) {
@@ -60,9 +63,9 @@ function Login() {
               navigate('/admin-panel/${userId}');
               break;
             case 'COMPANY_OWNER':
-              navigate('/company-panel');
+              navigate(`/company-panel` );
               break;
-            case 'USER':
+            case 'WORKER':
               navigate(`/user-panel/${userId}`);
               break;
             case 'GUEST':
@@ -83,7 +86,12 @@ function Login() {
           setError('Bilinmeyen bir hata oluştu.');
         }
       } else {
-        setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
+        setError('Çok Enteresan bir hata oldu. ' +
+            'Acayip Bir Hata. ' +
+            'Çok Üst Düzey Bir Hata. ' +
+            'Bu Hata Bizi Aşar. ' +
+            'Bu Hata Bizi Bitirir. ' +
+            'Ne yaptın sen böyle?');
       }
     } catch (error) {
       console.error('Giriş hatası:', error);
