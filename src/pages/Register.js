@@ -9,7 +9,7 @@ import { registerUser } from '../services/api'; // Api.js'den registerUser'ı i�
 function Register() {
   const [activeTab, setActiveTab] = useState('guest');
   const [error, setError] = useState('');
-  const [darkMode, setDarkMode] = useState(false); // Koyu mod durumunu tutan state
+
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -49,10 +49,7 @@ function Register() {
     window.location.href = '/login';
   };
 
-  const handleToggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // Koyu modu açma/kapatma işlemleri buraya eklenir
-  };
+
 
   return (
       <div className="page-container">
