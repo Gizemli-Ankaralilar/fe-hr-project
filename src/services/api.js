@@ -23,7 +23,7 @@ export const updateUserProfile = (userId, updatedData) => {
   return api.put(`/users/${userId}`, updatedData);
 };
 
-//PersonalAdd.js dosyasi icin
+//WorkerAdd.js dosyasi icin
 
 export const companyApi = axios.create({
     baseURL: 'http://localhost:9091/api/v1/company',

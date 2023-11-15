@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { saveWorker } from '../services/api'; // Dizin yapısına ve dosya adına göre güncellenmeli
-import './PersonalAdd.scss';
+import './WorkerAdd.scss';
 
 function PersonelAdd({ companyId }) {
     const [companyInfo, setCompanyInfo] = useState({});
@@ -76,23 +76,15 @@ function PersonelAdd({ companyId }) {
 
 
     return (
-        <div>
-            <h3 style={{ textAlign: "center" }}>Şirket Yönetimi</h3>
-            <p>Giriş Yapan Yönetici Adı: {companyInfo.username}</p>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <fieldset style={{ flex: 1 }}>
-                    <legend>Personel Sayfasına Geçiş</legend>
-                    <form>
-                        <br />
-                        <button type="submit">Personel Sayfasına Geçiş</button>
-                    </form>
-                </fieldset>
-                <fieldset style={{ flex: 1 }}>
-                    <legend>Personel Ekleme:</legend>
-                    <form onSubmit={handleWorkerSubmit}>
-                        <label htmlFor="username">Kullanıcı Adı:</label>
+        <div className="page-container">
+            <div className="personeladd-container">
+                <h3>Personel Ekleme Formu:</h3>
+                <p>Giriş Yapan Yönetici Adı: {companyInfo.username}</p>
+                <div className="form-container">
+                    <div className="input-container">
                         <input
                             type="text"
+                            placeholder="Kullanıcı Adı"
                             id="username"
                             name="username"
                             value={workerData.username}
@@ -100,9 +92,9 @@ function PersonelAdd({ companyId }) {
                             required
                         />
                         <br />
-                        <label htmlFor="firstName">İsim:</label>
                         <input
                             type="text"
+                            placeholder="İsim"
                             id="firstName"
                             name="firstName"
                             value={workerData.firstName}
@@ -110,9 +102,9 @@ function PersonelAdd({ companyId }) {
                             required
                         />
                         <br />
-                        <label htmlFor="lastName">Soyisim:</label>
                         <input
                             type="text"
+                            placeholder="Soyisim"
                             id="lastName"
                             name="lastName"
                             value={workerData.lastName}
@@ -120,9 +112,9 @@ function PersonelAdd({ companyId }) {
                             required
                         />
                         <br />
-                        <label htmlFor="email">Email:</label>
                         <input
                             type="email"
+                            placeholder="Email"
                             id="email"
                             name="email"
                             value={workerData.email}
@@ -130,27 +122,28 @@ function PersonelAdd({ companyId }) {
                             required
                         />
                         <br />
-                        <label htmlFor="phone">Telefon:</label>
                         <input
                             type="tel"
+                            placeholder="Telefon"
                             id="phone"
                             name="phone"
                             value={workerData.phone}
                             onChange={handleInputChange}
                         />
                         <br />
-                        <label htmlFor="address">Adres:</label>
                         <input
                             type="text"
+                            placeholder="Adres"
                             id="address"
                             name="address"
                             value={workerData.address}
                             onChange={handleInputChange}
                         />
-                        <br />
-                        <button type="submit">Personel Ekle</button>
-                    </form>
-                </fieldset>
+                    </div>
+                    <div className="button-container">
+                        <button onClick={handleWorkerSubmit}>Personel Ekle</button>
+                    </div>
+                </div>
             </div>
         </div>
     );

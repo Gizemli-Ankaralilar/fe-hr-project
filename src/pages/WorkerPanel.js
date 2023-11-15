@@ -7,6 +7,7 @@ import Settings from '../components/Settings';
 import CompanyInformation from '../components/CompanyInformation';
 import Yorum from '../components/Yorum';
 import { useParams } from 'react-router-dom'; // useParams hook'unu içe aktarın
+import Tasks from "../components/Tasks";
 
 function WorkerPanel() {
     const { userId } = useParams(); // useParams hook'u ile userId'i alın
@@ -45,13 +46,12 @@ function WorkerPanel() {
         <div className="panel">
             <div className="menu">
                 <ul>
-                    <li onClick={() => setActiveMenu('welcome')}>
-                        Hoşgeldin {userInfo.username}
-                    </li>
+                    <li onClick={() => setActiveMenu('welcome')}>{userInfo.username}</li>
                     <li onClick={() => setActiveMenu('user-info')}>Personel Bilgileri</li>
                     <li onClick={() => setActiveMenu('company-info')}>Şirket Bilgileri</li>
                     <li onClick={() => setActiveMenu('yorum')}>Yorum</li>
                     <li onClick={() => setActiveMenu('settings')}>Ayarlar</li>
+                    <li onClick={() => setActiveMenu('tasks')}>Yapılacaklar</li>
                 </ul>
             </div>
 
@@ -65,7 +65,9 @@ function WorkerPanel() {
                 {activeMenu === 'settings' && userId && <Settings userId={userId} />}
                 {activeMenu === 'company-info' && userId && <CompanyInformation companyId={userId} />}
                 {activeMenu === 'yorum' && userId && <Yorum userId={userId} />}
+                {activeMenu === 'tasks' && <Tasks userId={userId} />}
             </div>
+
         </div>
     );
 }

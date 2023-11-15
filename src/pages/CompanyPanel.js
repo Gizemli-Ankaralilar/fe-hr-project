@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import './CompanyPanel.scss';
 import Settings from '../components/Settings';
 import Company from '../components/Company';
-import PersonalAdd from '../components/PersonalAdd';
-import CompanyInformation from '../components/CompanyInformation'; // CompanyInformation bileşenini ekledik
+import PersonalAdd from '../components/WorkerAdd';
+import CompanyInformation from '../components/CompanyInformation';
+import Tasks from "../components/Tasks";
+
 
 function CompanyPanel() {
     const [userInfo, setUserInfo] = useState({});
@@ -39,13 +41,13 @@ function CompanyPanel() {
         <div className="panel">
             <div className="menu">
                 <ul>
-                    <li onClick={() => setActiveMenu('welcome')}>
-                        Hoşgeldin {userInfo.username}
-                    </li>
+                    <li onClick={() => setActiveMenu('welcome')}>{userInfo.username}</li>
                     <li onClick={() => setActiveMenu('company-info')}>Şirket Yönetimi</li>
                     <li onClick={() => setActiveMenu('company-information')}>Şirket Bilgileri</li> {/* Şirket Bilgileri menüsünü ekledik */}
-                    <li onClick={() => setActiveMenu('personnel-add')}>Personel Sayfasına Geç veya Personel Ekle</li>
+                    <li onClick={() => setActiveMenu('personnel-add')}>Personel Ekle</li>
+                    <li onClick={() => setActiveMenu('switch-panel')}>Personel Sayfasına Geç</li>
                     <li onClick={() => setActiveMenu('settings')}>Ayarlar</li>
+                    <li onClick={() => setActiveMenu('tasks')}>Yapılacaklar</li>
                 </ul>
             </div>
 
@@ -59,6 +61,8 @@ function CompanyPanel() {
                 {activeMenu === 'company-info' && userId && <Company companyId={userId} />}
                 {activeMenu === 'company-information' && userId && <CompanyInformation userId={userId} />} {/* Şirket Bilgileri menüsü için CompanyInformation bileşenini ekledik */}
                 {activeMenu === 'personnel-add' && <PersonalAdd userId={userId} />}
+                {activeMenu === 'tasks' && <Tasks userId={userId} />}
+
             </div>
         </div>
     );
