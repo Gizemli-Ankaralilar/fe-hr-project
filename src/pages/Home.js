@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import './Home.scss';
-import Navbar from '../components/Navbar'; // Navbar'ı içeri aktar
 
 function Home() {
   const [sections, setSections] = useState([
@@ -398,7 +397,6 @@ function Home() {
 
   return (
       <div className="home-container">
-        <Navbar />
         <h1>İnsan Kaynakları Yönetimi Projesi</h1>
         {sections.map((section, sectionIndex) => (
             <div key={sectionIndex} className="section">

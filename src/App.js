@@ -25,7 +25,7 @@ function App() {
             <Route path="/guest-panel/*" element={<GuestPanel />} />
             <Route path="/company-panel/*" element={<CompanyPanel />} />
             <Route path="/admin-panel/*" element={<AdminPanel />} />
-            <Route path="/user-panel/*" element={<WorkerPanel />} />
+            <Route path="/worker-panel/*" element={<WorkerPanel />} />
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate to="/login" />} />
           </Routes>

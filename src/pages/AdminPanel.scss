@@ -5,8 +5,8 @@
     height: 100vh;
 
     .menu {
-      width: 20%;
-      background-color: #f0f0f0;
+      width: 15%;
+      background: linear-gradient(to bottom, #4b6cb7, #182848);
       padding: 20px;
       ul {
         list-style: none;
@@ -14,10 +14,15 @@
         li {
           margin-bottom: 10px;
           cursor: pointer;
+          color: aliceblue;
+          transition: color 0.3s;
+
           &:hover {
-            color: #007BFF;
+            color: blueviolet;
           }
+
         }
+
       }
     }
   
@@ -25,4 +30,5 @@
       width: 80%;
       padding: 20px;
     }
+
   }
