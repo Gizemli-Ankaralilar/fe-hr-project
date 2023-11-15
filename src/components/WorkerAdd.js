@@ -1,5 +1,3 @@
-// src/components/PersonelAdd.js
-
 import React, { useState, useEffect } from 'react';
 import { saveWorker } from '../services/api'; // Dizin yapısına ve dosya adına göre güncellenmeli
 import './WorkerAdd.scss';
@@ -14,6 +12,7 @@ function PersonelAdd({ companyId }) {
         phone: '',
         address: '',
     });
+    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
         // Fetch company information from the server
@@ -51,8 +50,6 @@ function PersonelAdd({ companyId }) {
         // Önce kullanıcının girdiği bilgileri state'ten alalım
         const { username, firstName, lastName, email, phone, address } = workerData;
 
-
-
         // Oluşturduğumuz bilgileri bir nesne içinde toplayalım
         const workerDataForApi = {
             username,
@@ -64,23 +61,24 @@ function PersonelAdd({ companyId }) {
         };
 
         // Şimdi bu bilgileri servis fonksiyonuna gönderelim
-        saveWorker(token, workerData)
+        saveWorker(token, workerDataForApi)
             .then((response) => {
                 console.log(response.data);
                 // Başarılı yanıtın işlenmesi
+                setSuccessMessage('Personel başarıyla kaydedildi.');
             })
             .catch((error) => {
                 console.error('Çalışan ekleme hatası:', error);
             });
     };
 
-
     return (
         <div className="page-container">
             <div className="personeladd-container">
-                <h3>Personel Ekleme Formu:</h3>
+                <h3>Personel Ekleme Formu</h3>
                 <p>Giriş Yapan Yönetici Adı: {companyInfo.username}</p>
                 <div className="form-container">
+                    {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
                     <div className="input-container">
                         <input
                             type="text"
