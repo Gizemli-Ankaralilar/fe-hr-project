@@ -6,7 +6,6 @@ import './App.scss';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Register from './pages/Register';
-import GuestPanel from './pages/GuestPanel';
 import CompanyPanel from './pages/CompanyPanel';
 import AdminPanel from './pages/AdminPanel';
 import WorkerPanel from './pages/WorkerPanel';
@@ -22,7 +21,6 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/guest-panel/*" element={<GuestPanel />} />
             <Route path="/company-panel/*" element={<CompanyPanel />} />
             <Route path="/admin-panel/*" element={<AdminPanel />} />
             <Route path="/worker-panel/*" element={<WorkerPanel />} />

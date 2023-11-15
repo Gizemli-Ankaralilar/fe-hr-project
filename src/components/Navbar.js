@@ -40,7 +40,7 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className="nav-right">
-                    <Link to="/buraya_logout_linki_gelecek" className="nav-link">   /////// BURAYA LOGOUT LINKI LAZIM
+                    <Link to="/buraya_logout_linki_gelecek" className="nav-link">
                         Çıkış Yap
                     </Link>
                 </div>
