@@ -65,7 +65,7 @@ function Login() {
               navigate('/admin-panel/${userId}');
               break;
             case 'COMPANY_OWNER':
-              navigate(`/company-panel` );
+              navigate(`/company-panel${userId}` );
               break;
             case 'WORKER':
               navigate(`/worker-panel/${userId}`);

@@ -1,11 +1,14 @@
 // src/components/Navbar.js
 
-import React from 'react';
+import React, {useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.scss';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
     const location = useLocation();
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     // Navbar'ın görünüp görünmemesini kontrol etmek için bir fonksiyon
     const isNavbarVisible = () => {
@@ -14,6 +17,38 @@ function Navbar() {
 
         // Eğer location.pathname, visiblePages içinde ise Navbar görünecek
         return visiblePages.some(page => location.pathname.startsWith(page));
+    };
+
+
+
+    const handleLogout = async () => {
+
+        const token = localStorage.getItem('token');
+
+        try {
+            const logoutData = {token};
+            const response = await fetch('http://localhost:9090/api/v1/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(logoutData),
+            });
+
+            if (response.ok) {
+                const responseMessage = await response.text();
+                navigate(`/login` );
+                setError(responseMessage)
+
+            } else {
+                await navigate(`/login`);
+                window.alert("token yok. muhtemelen hiç login olmamışsın.");
+            }
+        }catch (error) {
+            console.log("hata 2")
+            console.error('Çıkış hatası:', error);
+            setError('Çıkış yapılamadı.');
+        }
     };
 
     return (
@@ -40,9 +75,7 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className="nav-right">
-                    <Link to="/buraya_logout_linki_gelecek" className="nav-link">
-                        Çıkış Yap
-                    </Link>
+                    <button onClick={handleLogout}>Çıkış Yap</button>
                 </div>
             </div>
         ) : null
