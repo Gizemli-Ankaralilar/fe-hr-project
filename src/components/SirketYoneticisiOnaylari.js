@@ -1,3 +1,5 @@
+// src/components/SirketYoneticisiOnaylari.js
+
 import React, { useState, useEffect } from 'react';
 
 function SirketYoneticisiOnaylari({ userId }) {

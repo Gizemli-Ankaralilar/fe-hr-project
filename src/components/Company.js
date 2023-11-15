@@ -1,4 +1,5 @@
-// Company.js
+// src/components/Company.js
+
 import React, { useState, useEffect } from 'react';
 
 function Company({ companyId }) {

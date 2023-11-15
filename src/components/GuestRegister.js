@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function GuestRegister() {
+function GuestRegister({ onLogin }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,17 +50,15 @@ function GuestRegister() {
         if (response.ok) {
           setError('Onay Link Mailinize Gönderildi.');
         } else if (response.status === 400) {
-        const errorData = await response.json();
-        if (errorData.message) {
-          setError(errorData.message);
+          const errorData = await response.json();
+          if (errorData.message) {
+            setError(errorData.message);
+          } else {
+            setError('Bilinmeyen bir hata oluştu.');
+          }
         } else {
-          setError('Bilinmeyen bir hata oluştu.');
+          setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
         }
-      } else {
-        setError('Çok Enteresan bir hata oldu. Acayip Bir Hata. Çok Üst Düzey Bir Hata. Bu Hata Bizi Aşar. Bu Hata Bizi Bitirir. Ne yaptın sen böyle?');
-      }
-
-
       } catch (error) {
         console.error('Kayıt hatası:', error);
         setError('Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyiniz.');
@@ -68,36 +66,47 @@ function GuestRegister() {
     }
   };
 
+  const handleLogin = () => {
+    if (onLogin) {
+      onLogin(); // Trigger the onLogin function to handle navigation to the login page
+    }
+  };
+
   return (
       <div className="guest-registration">
         <h2>Ziyaretçi Kaydı</h2>
-        <div className="input-container">
-          <input
-              type="text"
-              placeholder="Kullanıcı Adı"
-              value={username}
-              onChange={handleUsernameChange}
-          />
-          <input
-              type="email"
-              placeholder="E-Posta"
-              value={email}
-              onChange={handleEmailChange}
-          />
-          <input
-              type="password"
-              placeholder="Şifre"
-              value={password}
-              onChange={handlePasswordChange}
-          />
-          <input
-              type="password"
-              placeholder="Şifre Tekrar"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-          />
+        <div className="form-container">
+          <div className="input-container">
+            <input
+                type="text"
+                placeholder="Kullanıcı Adı"
+                value={username}
+                onChange={handleUsernameChange}
+            />
+            <input
+                type="email"
+                placeholder="E-Posta"
+                value={email}
+                onChange={handleEmailChange}
+            />
+            <input
+                type="password"
+                placeholder="Şifre"
+                value={password}
+                onChange={handlePasswordChange}
+            />
+            <input
+                type="password"
+                placeholder="Şifre Tekrar"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+            />
+          </div>
+          <div className="button-container">
+            <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
+            <button onClick={handleLogin}>Giriş Yap</button>
+          </div>
         </div>
-        <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
         {error && <p>{error}</p>}
       </div>
   );

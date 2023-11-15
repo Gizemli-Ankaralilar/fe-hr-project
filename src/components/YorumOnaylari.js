@@ -1,3 +1,5 @@
+// src/components/YorumOnaylari.js
+
 import React, { useState, useEffect } from 'react';
 
 function YorumOnaylari({ userId }) {

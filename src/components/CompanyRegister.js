@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CompanyRegister() {
+function CompanyRegister({ onLogin }) {
   const [username, setUsername] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [taxNumber, setTaxNumber] = useState('');
@@ -95,61 +95,71 @@ function CompanyRegister() {
     }
   };
 
+  const handleLogin = () => {
+    if (onLogin) {
+      onLogin(); // Trigger the onLogin function to handle navigation to the login page
+    }
+  };
 
   return (
       <div className="company-registration">
         <h2>Şirket Yöneticisi Kaydı</h2>
-        <div className="input-container">
-          <input
-              type="text"
-              placeholder="Kullanıcı Adı"
-              value={username}
-              onChange={handleUsernameChange}
-          />
-          <input
-              type="text"
-              placeholder="Şirket Adı"
-              value={companyName}
-              onChange={handleCompanyNameChange}
-          />
-          <input
-              type="text"
-              placeholder="Vergi Numarası"
-              value={taxNumber}
-              onChange={handleTaxNumberChange}
-          />
-          <input
-              type="email"
-              placeholder="Şirket E-posta"
-              value={email}
-              onChange={handleEmailChange}
-          />
-          <input
-              type="text"
-              placeholder="Şirket Adresi"
-              value={address}
-              onChange={handleAddressChange}
-          />
-          <input
-              type="text"
-              placeholder="Şirket Telefonu"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
-          />
-          <input
-              type="password"
-              placeholder="Şifre"
-              value={password}
-              onChange={handlePasswordChange}
-          />
-          <input
-              type="password"
-              placeholder="Şifre Tekrar"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-          />
+        <div className="form-container">
+          <div className="input-container">
+            <input
+                type="text"
+                placeholder="Kullanıcı Adı"
+                value={username}
+                onChange={handleUsernameChange}
+            />
+            <input
+                type="text"
+                placeholder="Şirket Adı"
+                value={companyName}
+                onChange={handleCompanyNameChange}
+            />
+            <input
+                type="text"
+                placeholder="Vergi Numarası"
+                value={taxNumber}
+                onChange={handleTaxNumberChange}
+            />
+            <input
+                type="email"
+                placeholder="Şirket E-posta"
+                value={email}
+                onChange={handleEmailChange}
+            />
+            <input
+                type="text"
+                placeholder="Şirket Adresi"
+                value={address}
+                onChange={handleAddressChange}
+            />
+            <input
+                type="text"
+                placeholder="Şirket Telefonu"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+            />
+            <input
+                type="password"
+                placeholder="Şifre"
+                value={password}
+                onChange={handlePasswordChange}
+            />
+            <input
+                type="password"
+                placeholder="Şifre Tekrar"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+            />
+          </div>
+          <div className="button-container">
+            <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
+            <button onClick={handleLogin}>Giriş Yap</button>
+          </div>
         </div>
-        <button onClick={handleRegister}>Kayıt İşlemini Tamamla</button>
         {error && <p>{error}</p>}
       </div>
   );

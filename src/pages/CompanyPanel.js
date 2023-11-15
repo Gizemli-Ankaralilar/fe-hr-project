@@ -1,5 +1,7 @@
+// src/pages/CompanyPanel.js
+
 import React, { useState, useEffect } from 'react';
-import './styles/Panel.scss';
+import './CompanyPanel.scss';
 import Settings from '../components/Settings';
 import Company from '../components/Company';
 import PersonalAdd from '../components/PersonalAdd';

@@ -1,5 +1,7 @@
+// src/pages/Login.js
+
 import React, { useState } from 'react';
-import './styles/Login.scss';
+import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -100,22 +102,29 @@ function Login() {
   };
 
   return (
-      <div className="login-container">
-        <h2>Kullanıcı Girişi</h2>
-        <div className="input-container">
-          <input
-              type="text"
-              placeholder="Kullanıcı Adı"
-              value={username}
-              onChange={handleUsernameChange}
-          />
-          <input
-              type="password"
-              placeholder="Şifre"
-              value={password}
-              onChange={handlePasswordChange}
-          />
-          <button onClick={handleLogin}>Giriş Yap</button>
+      <div className="page-container">
+        <div className="login-container">
+          <h2>Kullanıcı Girişi</h2>
+          <div className="form-container">
+            <div className="input-container">
+              <input
+                  type="text"
+                  placeholder="Kullanıcı Adı"
+                  value={username}
+                  onChange={handleUsernameChange}
+              />
+              <input
+                  type="password"
+                  placeholder="Şifre"
+                  value={password}
+                  onChange={handlePasswordChange}
+              />
+            </div>
+            <div className="button-container">
+              <button onClick={handleLogin}>Giriş Yap</button>
+              <button onClick={() => navigate('/register')}>Kayıt Ol</button>
+            </div>
+          </div>
           {error && <p className="error-message">{error}</p>}
         </div>
       </div>

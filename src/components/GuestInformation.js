@@ -1,4 +1,5 @@
-// GuestInformation.js
+// src/components/GuestInformation.js
+
 import React, { useState, useEffect } from 'react';
 
 function GuestInformation({ userId }) {
