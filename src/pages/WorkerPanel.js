@@ -1,12 +1,14 @@
+// src/pages/WorkerPanel.js
+
 import React, { useState, useEffect } from 'react';
-import './styles/Panel.scss';
+import './WorkerPanel.scss';
 import UserInformation from '../components/UserInformation';
 import Settings from '../components/Settings';
 import CompanyInformation from '../components/CompanyInformation';
 import Yorum from '../components/Yorum';
 import { useParams } from 'react-router-dom'; // useParams hook'unu içe aktarın
 
-function UserPanel() {
+function WorkerPanel() {
     const { userId } = useParams(); // useParams hook'u ile userId'i alın
 
     const [userInfo, setUserInfo] = useState({});
@@ -68,4 +70,4 @@ function UserPanel() {
     );
 }
 
-export default UserPanel;
+export default WorkerPanel;

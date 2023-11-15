@@ -1,3 +1,5 @@
+// src/components/CompanyManagement.js
+
 import React, { useState, useEffect } from 'react';
 
 function CompanyManagement({ companyId }) {

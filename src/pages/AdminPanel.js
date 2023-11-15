@@ -1,8 +1,11 @@
+// src/pages/AdminPanel.js
+
 import React, { useState, useEffect } from 'react';
-import './styles/Panel.scss';
+import './AdminPanel.scss';
 import Settings from '../components/Settings';
 import SirketYoneticisiOnaylari from '../components/SirketYoneticisiOnaylari';
 import YorumOnaylari from '../components/YorumOnaylari';
+
 
 function AdminPanel() {
     const [userInfo, setUserInfo] = useState({});

@@ -1,5 +1,7 @@
+// src/pages/Register.js
+
 import React, { useState } from 'react';
-import './styles/Register.scss';
+import './Register.scss';
 import GuestRegister from '../components/GuestRegister';
 import CompanyRegister from '../components/CompanyRegister';
 import { registerUser } from '../services/api'; // Api.js'den registerUser'ı içe aktar
@@ -7,6 +9,7 @@ import { registerUser } from '../services/api'; // Api.js'den registerUser'ı i�
 function Register() {
   const [activeTab, setActiveTab] = useState('guest');
   const [error, setError] = useState('');
+  const [darkMode, setDarkMode] = useState(false); // Koyu mod durumunu tutan state
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -14,7 +17,7 @@ function Register() {
 
   const handleRegister = async (data) => {
     try {
-      const response = await registerUser(data); // registerUser fonksiyonunu kullan
+      const response = await registerUser(data);
 
       if (response.ok) {
         if (data.type === 'guest') {
@@ -42,29 +45,40 @@ function Register() {
     }
   };
 
+  const handleLogin = () => {
+    window.location.href = '/login';
+  };
+
+  const handleToggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // Koyu modu açma/kapatma işlemleri buraya eklenir
+  };
+
   return (
-    <div className="register-container">
-      <div className="tabs">
-        <button
-          className={`tab ${activeTab === 'guest' ? 'active' : ''}`}
-          onClick={() => handleTabChange('guest')}
-        >
-          Ziyaretçi
-        </button>
-        <button
-          className={`tab ${activeTab === 'company' ? 'active' : ''}`}
-          onClick={() => handleTabChange('company')}
-        >
-          Şirket
-        </button>
+      <div className="page-container">
+        <div className="register-container">
+          <div className="tabs">
+            <button
+                className={`tab ${activeTab === 'guest' ? 'active' : ''}`}
+                onClick={() => handleTabChange('guest')}
+            >
+              Ziyaretçi
+            </button>
+            <button
+                className={`tab ${activeTab === 'company' ? 'active' : ''}`}
+                onClick={() => handleTabChange('company')}
+            >
+              Şirket
+            </button>
+          </div>
+          {activeTab === 'guest' ? (
+              <GuestRegister onRegister={handleRegister} onLogin={handleLogin} />
+          ) : (
+              <CompanyRegister onRegister={handleRegister} onLogin={handleLogin} />
+          )}
+          {error && <p className="error-message">{error}</p>}
+        </div>
       </div>
-      {activeTab === 'guest' ? (
-        <GuestRegister onRegister={handleRegister} />
-      ) : (
-        <CompanyRegister onRegister={handleRegister} />
-      )}
-      {error && <p className="error-message">{error}</p>}
-    </div>
   );
 }
 

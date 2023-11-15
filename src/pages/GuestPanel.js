@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/Panel.scss';
+import './GuestPanel.scss';
 import GuestInformation from '../components/GuestInformation'; // GuestInformation bileşenini içe aktarın
 import Settings from '../components/Settings'; // Ayarlar bileşenini içe aktarın
 

@@ -1,4 +1,5 @@
-// UserInformation.js
+// src/components/Settings.js
+
 import React, { useState, useEffect } from 'react';
 
 function Settings({ userId }) {

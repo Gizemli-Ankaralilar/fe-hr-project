@@ -1,3 +1,5 @@
+// src/components/CompanyInformation.js
+
 import React, { useState, useEffect } from 'react';
 
 function CompanyInformation({ userId }) {

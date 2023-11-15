@@ -1,3 +1,5 @@
+// src/components/Yorum.js
+
 import React, { useState, useEffect } from 'react';
 
 function Yorum({ userId }) {
