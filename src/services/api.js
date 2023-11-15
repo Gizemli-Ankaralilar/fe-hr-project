@@ -26,11 +26,11 @@ export const updateUserProfile = (userId, updatedData) => {
 //WorkerAdd.js dosyasi icin
 
 export const companyApi = axios.create({
-    baseURL: 'http://localhost:9091/api/v1/company',
+    baseURL: `http://localhost:9091/api/v1/company`,
 });
 
 export const saveWorker = (token, workerData) => {
-    return companyApi.post('/save/worker?token=' + token , {...workerData });
+    return companyApi.post(`/save/worker/` + token , {...workerData });
 };
 
 /*
