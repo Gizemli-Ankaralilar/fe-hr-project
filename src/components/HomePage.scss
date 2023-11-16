@@ -1,0 +1,41 @@
+/* src/pages/HomePage.scss */
+
+.homepage {
+  /* Add any styling for the overall homepage here */
+}
+
+.photo-gallery {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px; /* Adjust as needed for spacing */
+}
+
+.gallery-image {
+  max-width: 100%;
+  height: auto;
+  margin: 0 10px; /* Adjust as needed for spacing */
+}
+/* src/components/HomePage.scss */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* or any other background color you prefer */
+  padding: 10px;
+  text-align: center;
+}
+
+.social-icons img {
+  width: 30px; /* Adjust the size as needed */
+  margin: 0 10px; /* Adjust the spacing as needed */
+  cursor: pointer;
+}
+
+.footer p {
+  color: white; /* or any other text color you prefer */
+  margin: 5px 0;
+}
+
