@@ -127,6 +127,11 @@ function Login() {
           </div>
           {error && <p className="error-message">{error}</p>}
         </div>
+        <div className="homepage" style={{ position: 'absolute', top: 0, left: 0 }}>
+          <button onClick={() => navigate('/home')}>
+            Anasayfa (burası yakında silinecek)
+          </button>
+        </div>
       </div>
   );
 }

@@ -1,0 +1,38 @@
+// CompanyActivation.scss
+
+// Başlık stilleri
+.approval-section {
+  margin-top: 20px;
+}
+
+.approval-section h2 {
+  cursor: pointer;
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin: 0;
+}
+
+.approval-list {
+  display: none;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.approval-list th, .approval-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}

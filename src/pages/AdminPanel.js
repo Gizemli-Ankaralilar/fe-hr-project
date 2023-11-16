@@ -3,16 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPanel.scss';
 import Settings from '../components/Settings';
-import SirketYoneticisiOnaylari from '../components/SirketYoneticisiOnaylari';
-import YorumOnaylari from '../components/YorumOnaylari';
 import Tasks from '../components/Tasks';
+import CompanyActivation from "../components/CompanyActivation";
+import CommentApprovals from "../components/CommentApprovals"
+
 
 function AdminPanel() {
     const [userInfo, setUserInfo] = useState({});
+    const [companyInfo, setCompanyInfo] = useState({});
     const [userId, setUserId] = useState(null);
-    const [activeMenu, setActiveMenu] = useState('onay-islemleri');
-    const [showSirketYoneticisiOnaylari, setShowSirketYoneticisiOnaylari] = useState(false);
-    const [showYorumOnaylari, setShowYorumOnaylari] = useState(false);
+    const [activeMenu, setActiveMenu] = useState('welcome');
 
     useEffect(() => {
         const pathParts = window.location.pathname.split('/');
@@ -23,58 +23,33 @@ function AdminPanel() {
         }
     }, []);
 
-    const handleMenuClick = (menu) => {
-        setActiveMenu(menu);
-        setShowSirketYoneticisiOnaylari(false);
-        setShowYorumOnaylari(false);
-    };
-
-    const handleOnaylarClick = () => {
-        setActiveMenu('onaylar');
-    };
 
     return (
         <div className="panel">
             <div className="menu">
                 <ul>
-                    <li onClick={handleOnaylarClick}>Onay İşlemleri</li>
-                    <li onClick={() => handleMenuClick('settings')}>Ayarlar</li>
-                    <li onClick={() => handleMenuClick('tasks')}>Yapılacaklar</li>
+                    <li onClick={() => setActiveMenu('company-activation')}>Şirket Aktivasyonu</li>
+                    <li onClick={() => setActiveMenu('commment-approvals')}>Yorum Onayları</li>
+                    <li onClick={() => setActiveMenu('settings')}>Ayarlar</li>
+                    <li onClick={() => setActiveMenu('tasks')}>Yapılacaklar</li>
                 </ul>
             </div>
+
             <div className="content" style={{ textAlign: 'left' }}>
-                {activeMenu === 'onaylar' && (
+                {activeMenu === 'welcome' && (
                     <div>
-                        <h3 style={{ textAlign: "center" }}>Onay İşlemleri</h3>
-                        <div className="tabs">
-                            <button onClick={() => { setShowSirketYoneticisiOnaylari(true); setShowYorumOnaylari(false); }}>Yönetici Onayları</button>
-                            <button onClick={() => { setShowSirketYoneticisiOnaylari(false); setShowYorumOnaylari(true); }}>Yorum Onayları</button>
-                        </div>
-                        {showSirketYoneticisiOnaylari && (
-                            <SirketYoneticisiOnaylari userId={userId} />
-                        )}
-                        {showYorumOnaylari && (
-                            <YorumOnaylari userId={userId} />
-                        )}
+                        <h3 style={{ textAlign: "center" }}>Hoşgeldin {userInfo.username}</h3>
                     </div>
                 )}
+                {activeMenu === 'company-activation' && userId && <CompanyActivation userId={userId} />}
+                {activeMenu === 'comment-approvals' && userId && <CommentApprovals userId={userId} />}
+                {activeMenu === 'settings' && userId && <Settings userId={userId} />}
+                {activeMenu === 'tasks' && <Tasks userId={userId} />}
 
-                {activeMenu === 'settings' && (
-                    <div>
-                        <h3 style={{ textAlign: "center" }}>Ayarlar</h3>
-                        <Settings userId={userId} />
-                    </div>
-                )}
-
-                {activeMenu === 'tasks' && (
-                    <div>
-                        <h3 style={{ textAlign: "center" }}>Yapılacaklar</h3>
-                        <Tasks userId={userId} />
-                    </div>
-                )}
             </div>
         </div>
     );
+
 }
 
 export default AdminPanel;
