@@ -2,30 +2,34 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CompanyActivation.scss';
-import jwt from 'jsonwebtoken'; // token oluşturmak için jsonwebtoken kütüphanesini ekliyoruz
+import jwtManager from '../services/jwtManager'; // jwtManager dosyasını içe aktar
 
+import './CompanyActivation.scss';
 
 const CompanyActivation = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState('');
+    const [userId, setUserId] = useState(null); // userId state'i eklendi
 
     // Admin Kimlik Doğrulaması
     const token = localStorage.getItem('token');
-    const decodedToken = parseJwt(tokenData);
-    if (decodedToken) {
-        const userRole = decodedToken.role;
-        console.log(userRole);
-        if(userRole==="ADMIN"){
-            const userId = decodedToken.userId;
-            console.log('userId:', userId);
-        } else {
-            setError("kanka sen admin değilsin kusura bakma. sen git adminin gelsin. ")
-        }
-    } else {
-        setError("token'da bir sıkıntı var çözülemedi. ");
-    }
+    const decodedToken = jwtManager.parseJwt(token);
 
+    useEffect(() => {
+        if (decodedToken) {
+            const userRole = decodedToken.role;
+            console.log(userRole);
+            if (userRole === 'ADMIN') {
+                const userId = decodedToken.userId;
+                setUserId(userId); // userId state'ini güncelle
+                console.log('userId:', userId);
+            } else {
+                setError("kanka sen admin değilsin kusura bakma. sen git adminin gelsin. ");
+            }
+        } else {
+            setError("token'da bir sıkıntı var çözülemedi. ");
+        }
+    }, [decodedToken]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +46,6 @@ const CompanyActivation = () => {
 
     const filteredData = data.filter(item => item.status === 'PENDING' && item.role === 'COMPANY_OWNER');
 
-
     const handleApprove = async (id) => {
         try {
             // Backend'e gönderilecek token'ı oluştur
@@ -51,8 +54,8 @@ const CompanyActivation = () => {
                 ApprovationId: id
             };
 
-            // jsonwebtoken kullanarak token oluştur
-            const newToken = jwt.sign(tokenPayload, 'your-secret-key');
+            // jwtManager içindeki createJWT fonksiyonunu kullanarak token oluştur
+            const newToken = jwtManager.createJWT(tokenPayload);
 
             // Backend ile iletişim için axios kullan
             const response = await axios.get(`http://localhost:9090/api/v1/auth/activate_company_status?token=${newToken}`);
