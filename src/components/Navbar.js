@@ -41,11 +41,14 @@ function Navbar() {
                 setError(responseMessage)
 
             } else {
+                window.alert("duba yok.. token yok...\n" +
+                    "sen daha login olmamışın çıkışa basıyon!\n" +
+                    "bakacağzz..");
+                window.alert("bura boyabatta olsa çıkışı yaptırırlar sana!");
+                window.alert("BAKACAAAAĞĞĞZZZZ!!!");
                 await navigate(`/login`);
-                window.alert("token yok. muhtemelen hiç login olmamışsın.");
             }
         }catch (error) {
-            console.log("hata 2")
             console.error('Çıkış hatası:', error);
             setError('Çıkış yapılamadı.');
         }

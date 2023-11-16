@@ -92,21 +92,6 @@ function Tasks() {
                             expanded: false,
                             checked: false,
                         },
-                        {
-                            title: 'Şirket yöneticisi sayfasında Çalışan Listesi olacak (sadece görüntülenecek)',
-                            expanded: false,
-                            checked: false,
-                        },
-                        {
-                            title: 'Şirket yöneticisi sayfasında Çalışan Listesi olacak (sadece görüntülenecek)',
-                            expanded: false,
-                            checked: false,
-                        },
-                        {
-                            title: 'Şirket yöneticisi sayfasında Çalışan Listesi olacak (sadece görüntülenecek)',
-                            expanded: false,
-                            checked: false,
-                        },
                     ],
                 },
             ],
@@ -336,51 +321,61 @@ function Tasks() {
             checked: false,
             subSections: [
                 {
-                    title: 'BACKLOG 1',
+                    title: 'Harcama Talep Sayfası İstiyorum.',
                     expanded: false,
                     checked: false,
                     subSections: [
                         {
-                            title: 'İş 1',
+                            title: 'Bu sayfada personel harcama talebinde bulunabilecek. ',
                             expanded: false,
                             checked: false,
                         },
                         {
-                            title: 'İş 2',
+                            title: 'Bu talepler şirket yöneticisine iletilmeli ve şirket yöneticisi tarafından onaylanmalıdır.',
+                            expanded: false,
+                            checked: false,
+                        },
+                        {
+                            title: 'Harcama türü, tutarı, para birimi, onay durumu, talep tarihi-cevaplanma tarihi, bir dosya ekleme gibi özellikler bulunmalıdır.',
                             expanded: false,
                             checked: false,
                         },
                     ],
                 },
                 {
-                    title: 'BACKLOG 2',
+                    title: 'Avans Talep Sayfası İstiyorum',
                     expanded: false,
                     checked: false,
                     subSections: [
                         {
-                            title: 'İş 1',
+                            title: 'Personeller avans talebinde bulunabilecek, bu talepler şirket yöneticisi tarafından onaylanacak.',
                             expanded: false,
                             checked: false,
                         },
                         {
-                            title: 'İş 2',
+                            title: 'Personel maaşından fazla avans talep edemez.',
                             expanded: false,
                             checked: false,
                         },
                     ],
                 },
                 {
-                    title: 'BACKLOG 3',
+                    title: 'Satınalma sayfası oluşturulmalıdır.',
                     expanded: false,
                     checked: false,
                     subSections: [
                         {
-                            title: 'İş 1',
+                            title: 'Admin satınalma sayfası oluşturmalıdır. Burada şirket yöneticisi kayıt olurken bir paket seçmelidir. Paketler 30-60-90 günlük ',
                             expanded: false,
                             checked: false,
                         },
                         {
-                            title: 'İş 2',
+                            title: 'Şirket yöneticisi paket aldığında kayıt olma sayfasına yönlendirilmelidir. Bu işlem yalnızca şirket yoneticisi tarafından gerçekleştirilmelidir. Kullanıcıdan böyle bir paket seçme talep edilmemelidir.',
+                            expanded: false,
+                            checked: false,
+                        },
+                        {
+                            title: 'Paket ekleme(admin paket ekleyebilir, güncelleyebilir.) Paketin adı, süresi, fiyatı, yayınlanma tarihi, yayından kaldırma tarihi, aktiflik durumu, kullanıcı sayısı, para birimi.  ',
                             expanded: false,
                             checked: false,
                         },
