@@ -48,24 +48,30 @@ function Login() {
         const tokenData = await response.text();
 
         // localStorage'e token'ı kaydet
-        localStorage.setItem('token', tokenData);
+        localStorage.setItem('loginToken', tokenData);
+        const loginToken = localStorage.getItem("loginToken")
+
 
         const decodedToken = parseJwt(tokenData);
 
         if (decodedToken) {
-          const userRole = decodedToken.role;
-          console.log(userRole);
-          const userId = decodedToken.userId;
-          console.log('userId:', userId);
+          localStorage.setItem('loggedUserId', decodedToken.userId);
+          localStorage.setItem('loggedUserRole', decodedToken.role);
+
+          const userId = localStorage.getItem("loggedUserId")
+          const userRole = localStorage.getItem("loggedUserRole")
+
+
+
 
 
           // Kullanıcı rolüne göre yönlendirme
           switch (userRole) {
             case 'ADMIN':
-              navigate('/admin-panel/${userId}');
+              navigate(`/admin-panel/${userId}`);
               break;
             case 'COMPANY_OWNER':
-              navigate(`/company-panel${userId}` );
+              navigate(`/company-panel/${userId}` );
               break;
             case 'WORKER':
               navigate(`/worker-panel/${userId}`);

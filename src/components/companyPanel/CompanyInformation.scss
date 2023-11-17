@@ -1,0 +1,61 @@
+// src/components/companyPanel/CompanyInformation.scss
+
+.company-information-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-information-card {
+  width: 60%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.company-information-card img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.company-information-form {
+  width: 60%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.company-information-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.company-information-form label {
+  margin-bottom: 10px;
+}
+
+.company-information-form input,
+.company-information-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.company-information-form button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.company-information-form button:hover {
+  background-color: #45a049;
+}

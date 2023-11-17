@@ -23,10 +23,10 @@ function Navbar() {
 
     const handleLogout = async () => {
 
-        const token = localStorage.getItem('token');
+        const loginToken = localStorage.getItem('loginToken');
 
         try {
-            const logoutData = {token};
+            const logoutData = {loginToken};
             const response = await fetch('http://localhost:9090/api/v1/auth/logout', {
                 method: 'POST',
                 headers: {

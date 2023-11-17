@@ -38,10 +38,10 @@ function PersonelAdd({ companyId }) {
         e.preventDefault();
 
         // localStorage'ten token'ı al
-        const token = localStorage.getItem('token');
+        const loginToken = localStorage.getItem('loginToken');
 
         // Eğer token yoksa, kullanıcıyı giriş sayfasına yönlendir
-        if (!token) {
+        if (!loginToken) {
             // Örneğin, react-router-dom'un useNavigate fonksiyonu ile yönlendirme yapabilirsiniz.
             // useNavigate('/login'); gibi bir kullanım düşünülebilir.
             return;
@@ -61,7 +61,7 @@ function PersonelAdd({ companyId }) {
         };
 
         // Şimdi bu bilgileri servis fonksiyonuna gönderelim
-        saveWorker(token, workerDataForApi)
+        saveWorker(loginToken, workerDataForApi)
             .then((response) => {
                 console.log(response.data);
                 // Başarılı yanıtın işlenmesi
