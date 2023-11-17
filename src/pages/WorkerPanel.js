@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import './WorkerPanel.scss';
-import UserInformation from '../components/UserInformation';
+import UserInformation from '../components/workerPanel/UserInformation';
 import Settings from '../components/Settings';
-import CompanyInformation from '../components/CompanyInformation';
-import Yorum from '../components/Yorum';
+import CompanyInformation from '../components/companyPanel/CompanyInformation';
+import Yorum from '../components/workerPanel/Yorum';
 import { useParams } from 'react-router-dom'; // useParams hook'unu içe aktarın
 import Tasks from "../components/Tasks";
 

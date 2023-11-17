@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import './CompanyPanel.scss';
 import Settings from '../components/Settings';
-import Company from '../components/Company';
-import PersonalAdd from '../components/WorkerAdd';
-import CompanyInformation from '../components/CompanyInformation';
+import Company from '../components/companyPanel/Company';
+import PersonalAdd from '../components/companyPanel/WorkerAdd';
+import CompanyInformation from '../components/companyPanel/CompanyInformation';
 import Tasks from "../components/Tasks";
 
 

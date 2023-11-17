@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import './AdminPanel.scss';
 import Settings from '../components/Settings';
 import Tasks from '../components/Tasks';
-import CompanyActivation from "../components/CompanyActivation";
-import CommentApprovals from "../components/CommentApprovals"
+import CompanyActivation from "../components/adminPanel/CompanyActivation";
+import CommentApprovals from "../components/adminPanel/CommentApprovals"
 
 
 function AdminPanel() {

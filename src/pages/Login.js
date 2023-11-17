@@ -71,7 +71,7 @@ function Login() {
               navigate(`/worker-panel/${userId}`);
               break;
             case 'GUEST':
-              navigate(`/`);
+              navigate(`/home`);
               break;
             default:
               setError('Geçersiz kullanıcı rolü.');
