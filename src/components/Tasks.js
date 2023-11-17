@@ -68,7 +68,7 @@ function Tasks() {
                         {
                             title: 'Eğer kayıt olan şirket yöneticisi ise bu işlemin onayı admin tarafından admin sayfasında gerçekleştirilmelidir.',
                             expanded: false,
-                            checked: false,
+                            checked: true,
                         },
                         {
                             title: 'Admin onayladıktan sonra şirket yöneticisine "işleminiz onaylandı" gibi bir mail gitmelidir. ',

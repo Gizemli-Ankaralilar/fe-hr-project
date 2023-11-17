@@ -12,12 +12,12 @@ const CompanyActivation = () => {
     const [userRole, setUserRole] = useState(null);
 
     // Admin Kimlik Doğrulaması
-    const token = localStorage.getItem('token');
-    const decodedToken = parseJWT(token);
+    const loginToken = localStorage.getItem('loginToken');
+    const decodedLoginToken = parseJWT(loginToken);
 
     useEffect(() => {
-        if (decodedToken) {
-            const role = decodedToken.role;
+        if (decodedLoginToken) {
+            const role = decodedLoginToken.role;
             if (role === 'ADMIN') {
                 setUserRole(role);
             } else {
@@ -26,7 +26,7 @@ const CompanyActivation = () => {
         } else {
             setError("token'da bir sıkıntı var çözülemedi. ");
         }
-    }, [decodedToken]);
+    }, [decodedLoginToken]);
 
     useEffect(() => {
         const fetchData = async () => {
