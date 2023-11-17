@@ -6,11 +6,9 @@ import './CompanyInformation.scss';
 function CompanyInformation() {
     const [companyInfo, setCompanyInfo] = useState({});
     const [editMode, setEditMode] = useState(false);
+    const [userId, setUserId] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const loginToken = localStorage.getItem("loginToken")
-    const userId = localStorage.getItem("loggedUserId")
-    const userRole = localStorage.getItem("loggedUserRole")
 
     useEffect(() => {
 

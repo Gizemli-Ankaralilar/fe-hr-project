@@ -41,9 +41,9 @@ function AdminPanel() {
                         <h3 style={{ textAlign: "center" }}>Hoşgeldin {userInfo.username}</h3>
                     </div>
                 )}
-                {activeMenu === 'company-activation' && userId && <CompanyActivation userId={userId} />}
-                {activeMenu === 'comment-approvals' && userId && <CommentApprovals userId={userId} />}
-                {activeMenu === 'settings' && userId && <Settings userId={userId} />}
+                {activeMenu === 'company-activation' &&  <CompanyActivation userId={userId} />}
+                {activeMenu === 'comment-approvals' &&  <CommentApprovals userId={userId} />}
+                {activeMenu === 'settings' &&  <Settings userId={userId} />}
                 {activeMenu === 'tasks' && <Tasks userId={userId} />}
 
             </div>

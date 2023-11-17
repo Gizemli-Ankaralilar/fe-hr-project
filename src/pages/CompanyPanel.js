@@ -14,11 +14,10 @@ import Settings from '../components/Settings';
 function CompanyPanel() {
     const [userInfo, setUserInfo] = useState({});
     const [companyInfo, setCompanyInfo] = useState({});
+    const [userId, setUserId] = useState(null);
     const [activeMenu, setActiveMenu] = useState('welcome');
 
-    const loginToken = localStorage.getItem("loginToken")
-    const userId = localStorage.getItem("loggedUserId")
-    const userRole = localStorage.getItem("loggedUserRole")
+
 
     useEffect(() => {
         const pathParts = window.location.pathname.split('/');

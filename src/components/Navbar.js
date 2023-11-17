@@ -23,10 +23,10 @@ function Navbar() {
 
     const handleLogout = async () => {
 
-        const loginToken = localStorage.getItem('loginToken');
+        const token = localStorage.getItem('token');
 
         try {
-            const logoutData = {loginToken};
+            const logoutData = {token};
             const response = await fetch('http://localhost:9090/api/v1/auth/logout', {
                 method: 'POST',
                 headers: {
@@ -67,15 +67,15 @@ function Navbar() {
                     <Link to="/home" className="nav-link">
                         Anasayfa
                     </Link>
-                    <Link to="/admin-panel" className="nav-link">
-                        Admin Panel
-                    </Link>
-                    <Link to="/company-panel" className="nav-link">
-                        Company Panel
-                    </Link>
-                    <Link to="/worker-panel" className="nav-link">
-                        Worker Panel
-                    </Link>
+                    {/*<Link to="/admin-panel" className="nav-link">*/}
+                    {/*    Admin Panel*/}
+                    {/*</Link>*/}
+                    {/*<Link to="/company-panel" className="nav-link">*/}
+                    {/*    Company Panel*/}
+                    {/*</Link>*/}
+                    {/*<Link to="/worker-panel" className="nav-link">*/}
+                    {/*    Worker Panel*/}
+                    {/*</Link>*/}
                 </div>
                 <div className="nav-right">
                     <button onClick={handleLogout}>Çıkış Yap</button>

@@ -10,23 +10,24 @@ const CompanyActivation = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState('');
     const [userRole, setUserRole] = useState(null);
+    const [approvalStatuses, setApprovalStatuses] = useState({});
 
     // Admin Kimlik Doğrulaması
-    const loginToken = localStorage.getItem('loginToken');
-    const decodedLoginToken = parseJWT(loginToken);
+    const token = localStorage.getItem('token');
+    const decodedtoken = parseJWT(token);
 
     useEffect(() => {
-        if (decodedLoginToken) {
-            const role = decodedLoginToken.role;
+        if (decodedtoken) {
+            const role = decodedtoken.role;
             if (role === 'ADMIN') {
                 setUserRole(role);
             } else {
-                setError("kanka sen admin değilsin kusura bakma. sen git adminin gelsin. ");
+                setError("Üzgünüm, sadece admin yetkisine sahipsiniz.");
             }
         } else {
-            setError("token'da bir sıkıntı var çözülemedi. ");
+            setError("Token bilgilerinde bir sorun var ve çözülemedi.");
         }
-    }, [decodedLoginToken]);
+    }, [decodedtoken]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,19 +46,22 @@ const CompanyActivation = () => {
     const handleApprove = async (id) => {
         if (userRole === "ADMIN") {
             try {
-                // createJWT fonksiyonunu kullanarak token oluştur
                 const newToken = await createJWT(id, userRole);
 
                 const sendToken = async (token) => {
                     try {
                         const response = await fetch(`http://localhost:9090/api/v1/auth/activate_company_status?token=${token}`);
 
+                        setApprovalStatuses((prevStatuses) => ({
+                            ...prevStatuses,
+                            [id]: response.status === 200 ? "ONAYLANDI" : "HATA",
+                        }));
+
                         if (response.status === 200) {
                             console.log("İşlem başarılı");
                         } else {
                             console.log("İşlem başarısız");
                         }
-
                     } catch (error) {
                         console.error('Token gönderilemedi:', error);
                     }
@@ -72,7 +76,6 @@ const CompanyActivation = () => {
             alert("BUTONA BASAN ADMİN DEĞİL.");
         }
     };
-
 
     return (
         <div>
@@ -96,7 +99,9 @@ const CompanyActivation = () => {
                         <td>{item.status}</td>
                         <td>{item.role}</td>
                         <td>
-                            <button onClick={() => handleApprove(item.id)}>Onayla</button>
+                            <button onClick={() => handleApprove(item.id)}>
+                                {approvalStatuses[item.id] || "Onayla"}
+                            </button>
                         </td>
                     </tr>
                 ))}

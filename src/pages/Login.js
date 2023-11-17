@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [userId, setUserId] = useState(null);
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
@@ -48,22 +49,14 @@ function Login() {
         const tokenData = await response.text();
 
         // localStorage'e token'ı kaydet
-        localStorage.setItem('loginToken', tokenData);
-        const loginToken = localStorage.getItem("loginToken")
+        localStorage.setItem('token', tokenData);
 
 
         const decodedToken = parseJwt(tokenData);
+        const userRole = decodedToken.role;
+        const userId = decodedToken.id
 
         if (decodedToken) {
-          localStorage.setItem('loggedUserId', decodedToken.userId);
-          localStorage.setItem('loggedUserRole', decodedToken.role);
-
-          const userId = localStorage.getItem("loggedUserId")
-          const userRole = localStorage.getItem("loggedUserRole")
-
-
-
-
 
           // Kullanıcı rolüne göre yönlendirme
           switch (userRole) {
@@ -133,11 +126,11 @@ function Login() {
           </div>
           {error && <p className="error-message">{error}</p>}
         </div>
-        <div className="homepage" style={{ position: 'absolute', top: 0, left: 0 }}>
-          <button onClick={() => navigate('/home')}>
-            Anasayfa (burası yakında silinecek)
-          </button>
-        </div>
+        {/*<div className="homepage" style={{ position: 'absolute', top: 0, left: 0 }}>*/}
+        {/*  <button onClick={() => navigate('/home')}>*/}
+        {/*    Anasayfa (burası yakında silinecek)*/}
+        {/*  </button>*/}
+        {/*</div>*/}
       </div>
   );
 }
