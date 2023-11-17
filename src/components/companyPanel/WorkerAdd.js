@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { saveWorker } from '../services/api'; // Dizin yapısına ve dosya adına göre güncellenmeli
+import { saveWorker } from '../../services/api'; // Dizin yapısına ve dosya adına göre güncellenmeli
 import './WorkerAdd.scss';
 
 function PersonelAdd({ companyId }) {

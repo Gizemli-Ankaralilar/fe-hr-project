@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import './Register.scss';
-import GuestRegister from '../components/GuestRegister';
-import CompanyRegister from '../components/CompanyRegister';
+import GuestRegister from '../components/register/GuestRegister';
+import CompanyRegister from '../components/register/CompanyRegister';
 import { registerUser } from '../services/api'; // Api.js'den registerUser'ı içe aktar
 
 function Register() {
